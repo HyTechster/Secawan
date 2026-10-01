@@ -189,11 +189,34 @@
         background: #1f1714;
       }
       /* The render's shadow-catcher floor leaves a faint box; feather it away */
-      .bag {
+      /* Three pouches grouped like a shelf display: two behind, one in front */
+      .bags {
         position: absolute;
         z-index: 2;
+      }
+      .bag {
+        position: absolute;
+        bottom: 0;
+        /* The renders' shadow-catcher floor leaves a faint box; feather it away */
         -webkit-mask-image: radial-gradient(ellipse 46% 52% at 50% 52%, #000 72%, transparent 100%);
         mask-image: radial-gradient(ellipse 46% 52% at 50% 52%, #000 72%, transparent 100%);
+      }
+      .bag--back {
+        width: 60%;
+        left: 0;
+        bottom: 9%;
+        z-index: 1;
+      }
+      .bag--side {
+        width: 60%;
+        right: 0;
+        bottom: 9%;
+        z-index: 1;
+      }
+      .bag--front {
+        width: 70%;
+        left: 15%;
+        z-index: 2;
       }
       .bean {
         position: absolute;
@@ -240,10 +263,12 @@
         right: 70px;
         bottom: -170px;
       }
-      .r4x3 .bag {
-        width: 300px;
-        left: 590px;
-        bottom: -30px;
+      /* Line-up sits just left of the phone, in front of the browser's lower edge */
+      .r4x3 .bags {
+        width: 440px;
+        height: 430px;
+        right: 330px;
+        bottom: -40px;
       }
       .r4x3 .bean--a {
         left: 900px;
@@ -295,10 +320,12 @@
         left: 600px;
         bottom: -170px;
       }
-      .r16x9 .bag {
-        width: 300px;
-        right: 60px;
-        bottom: -60px;
+      /* Line-up sits just right of the phone, in front of the browser's lower edge */
+      .r16x9 .bags {
+        width: 440px;
+        height: 430px;
+        left: 900px;
+        bottom: -50px;
       }
       .r16x9 .bean--a {
         left: 640px;
@@ -350,7 +377,12 @@
         <img src="shots/desktop-hero.png" alt="" />
       </div>
       <div class="phone"><img src="shots/mobile-hero.png" alt="" /></div>
-      <img class="bag" src="../blender/renders/bags/senja.png" alt="" />
+      <!-- A small product line-up standing beside the phone -->
+      <div class="bags">
+        <img class="bag bag--back" src="../blender/renders/bags/senja.png" alt="" />
+        <img class="bag bag--front" src="../blender/renders/bags/kabus.png" alt="" />
+        <img class="bag bag--side" src="../blender/renders/bags/nangka.png" alt="" />
+      </div>
     </main>
     <script>
       const size = new URLSearchParams(location.search).get('size') || '4x3'
