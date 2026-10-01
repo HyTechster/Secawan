@@ -137,10 +137,14 @@ useGsapContext(section, ({ reduced: isReduced, root, later }) => {
     radial-gradient(60% 50% at 90% 10%, var(--mist), transparent 70%),
     linear-gradient(180deg, #f1ece3 0%, var(--cream) 100%);
 }
+/* Purely visual: the tilt follows the window pointer, so the canvas never needs touches.
+   Letting them through keeps the page scrollable when a finger lands on the cup. */
 .hero__scene {
   position: absolute;
   inset: auto 0 0 0;
   height: 56%;
+  pointer-events: none;
+  touch-action: pan-y;
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%);
   mask-image: linear-gradient(180deg, transparent 0%, #000 22%);
 }

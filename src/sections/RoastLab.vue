@@ -262,6 +262,8 @@ const bars = computed(() => [
   position: relative;
   width: min(100%, 520px);
   aspect-ratio: 1;
+  /* Visual only; let touches scroll the page instead of being caught by the canvas */
+  pointer-events: none;
 }
 .lab__bean-fallback {
   width: 50%;

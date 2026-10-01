@@ -1,20 +1,27 @@
-/** Curling steam wisps: value-noise fbm scrolled upward and bent by a sine sway. */
+/**
+ * Steam: thin wisps that leave the coffee surface, curl as they rise, then thin out.
+ * Value-noise fbm breaks each wisp up; the curl comes from a height-driven sway.
+ */
 export const steamVertex = /* glsl */ `
   varying vec2 vUv;
+  varying float vFacing;
   uniform float uTime;
   uniform float uSeed;
   void main() {
     vUv = uv;
+    vec3 n = normalize(normalMatrix * normal);
+    vFacing = smoothstep(0.15, 0.6, abs(n.z));
     vec3 p = position;
     float lift = uv.y * uv.y;
-    p.x += sin(uv.y * 4.0 + uTime * 0.8 + uSeed) * 0.22 * lift;
-    p.z += cos(uv.y * 3.0 + uTime * 0.6 + uSeed) * 0.12 * lift;
+    p.x += sin(uv.y * 3.0 - uTime * 0.8 + uSeed) * 0.32 * lift;
+    p.z += cos(uv.y * 2.6 - uTime * 0.6 + uSeed) * 0.2 * lift;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
   }
 `
 
 export const steamFragment = /* glsl */ `
   varying vec2 vUv;
+  varying float vFacing;
   uniform float uTime;
   uniform float uSeed;
   uniform float uOpacity;
@@ -37,14 +44,22 @@ export const steamFragment = /* glsl */ `
 
   void main() {
     vec2 uv = vUv;
-    float t = uTime * 0.35;
-    float sway = sin(uv.y * 6.0 - uTime * 1.2 + uSeed) * 0.12 * uv.y;
-    float core = 1.0 - smoothstep(0.0, 0.32, abs(uv.x - 0.5 + sway));
-    float n = fbm(vec2(uv.x * 3.0 + uSeed, uv.y * 2.4 - t * 2.0));
-    float wisp = core * smoothstep(0.35, 0.75, n + core * 0.25);
-    float fade = smoothstep(0.0, 0.18, uv.y) * (1.0 - smoothstep(0.55, 1.0, uv.y));
+    float t = uTime * 0.45;
+    // The wisp's centre line curls more the higher it rises
+    float sway = sin(uv.y * 4.0 - uTime * 1.1 + uSeed) * 0.2 * uv.y
+               + sin(uv.y * 9.0 - uTime * 1.9 + uSeed * 2.0) * 0.07 * uv.y;
+    // A thread at the cup that billows wider and softer as it climbs
+    float width = mix(0.06, 0.34, pow(uv.y, 0.8));
+    float core = 1.0 - smoothstep(0.0, width, abs(uv.x - 0.5 - sway));
+    core *= core;
+    float n = fbm(vec2(uv.x * 2.6 + uSeed, uv.y * 2.3 - t * 2.4));
+    // Seen edge-on, a plane collapses to a hard thread; fade those angles out
+    float wisp = core * smoothstep(0.34, 0.74, n + core * 0.25) * vFacing;
+    // Present right from the surface, thinning out well before the top of the plane
+    float fade = smoothstep(0.0, 0.05, uv.y) * (1.0 - smoothstep(0.3, 0.85, uv.y));
     float a = wisp * fade * uOpacity;
     if (a < 0.003) discard;
-    gl_FragColor = vec4(uColor, a);
+    // Premultiplied: the canvas is transparent, and straight alpha would composite as grey
+    gl_FragColor = vec4(uColor * a, a);
   }
 `

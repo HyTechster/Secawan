@@ -26,6 +26,7 @@ const dpr = canvasDpr()
     :dpr="dpr"
     :alpha="true"
     :clear-alpha="0"
+    :premultiplied-alpha="true"
     :antialias="true"
     :tone-mapping="ACESFilmicToneMapping"
     :tone-mapping-exposure="1.0"

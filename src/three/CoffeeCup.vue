@@ -36,7 +36,7 @@ const glaze = new MeshPhysicalMaterial({
 const crema = new ShaderMaterial({
   vertexShader: rippleVertex,
   fragmentShader: rippleFragment,
-  uniforms: { uTime: { value: 0 }, uCrema: { value: textures.crema } },
+  uniforms: { uTime: { value: 0 }, uSpin: { value: -0.5 }, uCrema: { value: textures.crema } },
 })
 
 // Soft contact shadow under the saucer: a radial gradient on a flat plane, no shadow maps needed
@@ -65,6 +65,7 @@ onBeforeRender(({ elapsed }) => {
   if (!g) return
   const targetY = -0.5 + props.motion.scroll * Math.PI * 1.4
   g.rotation.y += (targetY - g.rotation.y) * 0.08
+  crema.uniforms.uSpin.value = g.rotation.y
   if (props.animate) g.position.y = Math.sin(elapsed * 0.8) * 0.04
 })
 
