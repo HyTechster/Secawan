@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Secawan portfolio thumbnail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Manrope:wght@500;600;700;800&display=block"
+    />
+    <style>
+      :root {
+        --cream: #f6f0e6;
+        --paper: #ede3d3;
+        --espresso: #2b1b14;
+        --espresso-soft: #5b4a40;
+        --terracotta: #d0673f;
+        --terracotta-ink: #a8482a;
+        --sage: #8fa68a;
+        --crema: #e8b97a;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        background: var(--cream);
+      }
+      .canvas {
+        position: relative;
+        overflow: hidden;
+        font-family: Manrope, sans-serif;
+        color: var(--espresso);
+        background:
+          radial-gradient(60% 55% at 88% 12%, rgb(232 185 122 / 0.38), transparent 70%),
+          radial-gradient(55% 60% at 8% 95%, rgb(143 166 138 / 0.32), transparent 70%),
+          linear-gradient(160deg, #f4ece0 0%, #f6f0e6 45%, #efe6d8 100%);
+      }
+      .canvas::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.35;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.36 0 0 0 0 0.25 0 0 0 0 0.18 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      /* ---------- copy ---------- */
+      .brand {
+        position: absolute;
+        z-index: 3;
+      }
+      .mark {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: var(--espresso-soft);
+      }
+      .mark svg {
+        width: 44px;
+        height: 44px;
+      }
+      .wordmark {
+        font-family: Fraunces, serif;
+        font-style: italic;
+        font-weight: 420;
+        font-variation-settings: 'SOFT' 100, 'WONK' 1;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        padding-bottom: 0.08em;
+      }
+      .tagline {
+        font-family: Fraunces, serif;
+        font-weight: 380;
+        font-variation-settings: 'SOFT' 100, 'WONK' 0;
+        letter-spacing: -0.02em;
+        line-height: 1.12;
+      }
+      .tagline em {
+        font-style: italic;
+        font-variation-settings: 'SOFT' 100, 'WONK' 1;
+        color: var(--terracotta-ink);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chip {
+        padding: 9px 18px;
+        border-radius: 999px;
+        background: rgb(43 27 20 / 0.07);
+        box-shadow: inset 0 0 0 1px rgb(43 27 20 / 0.08);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--espresso);
+      }
+      .credit {
+        position: absolute;
+        z-index: 3;
+        font-weight: 700;
+        letter-spacing: 0.005em;
+        color: var(--espresso-soft);
+      }
+      .credit .name {
+        color: var(--espresso);
+        font-weight: 800;
+      }
+      .credit .at {
+        color: var(--terracotta);
+        font-weight: 800;
+        padding-inline: 0.12em;
+      }
+
+      /* ---------- devices ---------- */
+      .browser {
+        position: absolute;
+        z-index: 1;
+        border-radius: 22px;
+        overflow: hidden;
+        background: #fbf7f0;
+        box-shadow:
+          0 0 0 1px rgb(43 27 20 / 0.08),
+          0 40px 80px -30px rgb(43 27 20 / 0.45),
+          0 18px 36px -18px rgb(43 27 20 / 0.25);
+      }
+      .browser__bar {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        height: 46px;
+        padding-inline: 20px;
+        background: #efe7da;
+        border-bottom: 1px solid rgb(43 27 20 / 0.06);
+      }
+      .browser__bar i {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: rgb(43 27 20 / 0.16);
+      }
+      .browser__bar i:first-child {
+        background: var(--terracotta);
+      }
+      .browser__url {
+        margin-left: 18px;
+        padding: 6px 18px;
+        border-radius: 999px;
+        background: rgb(255 255 255 / 0.6);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--espresso-soft);
+      }
+      .browser img {
+        display: block;
+        width: 100%;
+      }
+      .phone {
+        position: absolute;
+        z-index: 2;
+        padding: 12px;
+        border-radius: 52px;
+        background: #1f1714;
+        box-shadow:
+          0 0 0 1.5px rgb(255 255 255 / 0.06) inset,
+          0 50px 90px -30px rgb(43 27 20 / 0.6),
+          0 20px 40px -20px rgb(43 27 20 / 0.35);
+      }
+      .phone img {
+        display: block;
+        width: 100%;
+        border-radius: 41px;
+      }
+      .phone::before {
+        content: '';
+        position: absolute;
+        top: 22px;
+        left: 50%;
+        width: 92px;
+        height: 26px;
+        margin-left: -46px;
+        border-radius: 20px;
+        background: #1f1714;
+      }
+      /* The render's shadow-catcher floor leaves a faint box; feather it away */
+      .bag {
+        position: absolute;
+        z-index: 2;
+        -webkit-mask-image: radial-gradient(ellipse 46% 52% at 50% 52%, #000 72%, transparent 100%);
+        mask-image: radial-gradient(ellipse 46% 52% at 50% 52%, #000 72%, transparent 100%);
+      }
+      .bean {
+        position: absolute;
+        z-index: 0;
+        width: 46px;
+        opacity: 0.9;
+      }
+
+      /* ---------- 4:3, 1600 x 1200 ---------- */
+      .r4x3 {
+        width: 1600px;
+        height: 1200px;
+      }
+      .r4x3 .brand {
+        left: 96px;
+        top: 92px;
+        width: 760px;
+      }
+      .r4x3 .wordmark {
+        margin-top: 34px;
+        font-size: 172px;
+      }
+      .r4x3 .tagline {
+        margin-top: 18px;
+        font-size: 46px;
+        max-width: 16ch;
+      }
+      .r4x3 .chips {
+        margin-top: 34px;
+        max-width: 520px;
+      }
+      .r4x3 .credit {
+        left: 96px;
+        bottom: 84px;
+        font-size: 24px;
+      }
+      .r4x3 .browser {
+        width: 1060px;
+        right: -70px;
+        top: 360px;
+      }
+      .r4x3 .phone {
+        width: 280px;
+        right: 70px;
+        bottom: -170px;
+      }
+      .r4x3 .bag {
+        width: 300px;
+        left: 590px;
+        bottom: -30px;
+      }
+      .r4x3 .bean--a {
+        left: 900px;
+        top: 150px;
+        rotate: 28deg;
+      }
+      .r4x3 .bean--b {
+        left: 1290px;
+        top: 230px;
+        width: 34px;
+        rotate: -40deg;
+      }
+
+      /* ---------- 16:9, 1920 x 1080 ---------- */
+      .r16x9 {
+        width: 1920px;
+        height: 1080px;
+      }
+      .r16x9 .brand {
+        left: 110px;
+        top: 150px;
+        width: 640px;
+      }
+      .r16x9 .wordmark {
+        margin-top: 36px;
+        font-size: 168px;
+      }
+      .r16x9 .tagline {
+        margin-top: 20px;
+        font-size: 46px;
+        max-width: 15ch;
+      }
+      .r16x9 .chips {
+        margin-top: 38px;
+        max-width: 560px;
+      }
+      .r16x9 .credit {
+        left: 110px;
+        bottom: 96px;
+        font-size: 26px;
+      }
+      .r16x9 .browser {
+        width: 1180px;
+        right: -110px;
+        top: 150px;
+      }
+      .r16x9 .phone {
+        width: 290px;
+        left: 600px;
+        bottom: -170px;
+      }
+      .r16x9 .bag {
+        width: 300px;
+        right: 60px;
+        bottom: -60px;
+      }
+      .r16x9 .bean--a {
+        left: 640px;
+        top: 90px;
+        rotate: 28deg;
+      }
+      .r16x9 .bean--b {
+        left: 1660px;
+        top: 70px;
+        width: 34px;
+        rotate: -40deg;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas" id="canvas">
+      <div class="brand">
+        <div class="mark">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M6 12h17v3c0 5-3.8 9-8.5 9S6 20 6 15z" fill="#2B1B14" />
+            <path d="M23 14h1.5a3 3 0 0 1 0 6H22" fill="none" stroke="#2B1B14" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M12 9c-1.4-2 1.4-3 0-5.5M17 9c-1.4-2 1.4-3 0-5.5" fill="none" stroke="#D0673F" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          Web design &amp; development
+        </div>
+        <h1 class="wordmark">Secawan</h1>
+        <p class="tagline">A brand site for a <em>highland</em> coffee roastery.</p>
+        <div class="chips">
+          <span class="chip">Vue 3</span>
+          <span class="chip">TresJS 3D</span>
+          <span class="chip">GSAP</span>
+          <span class="chip">Blender</span>
+        </div>
+      </div>
+
+      <p class="credit">by <span class="name">Wan Amirul Amir</span><span class="at">@</span><span class="name">HyTechster</span></p>
+
+      <svg class="bean bean--a" viewBox="0 0 24 32" aria-hidden="true">
+        <ellipse cx="12" cy="16" rx="10" ry="14" fill="#4A2C1C" />
+        <path d="M12 3c-3 5 3 9 0 13s3 9 0 13" fill="none" stroke="#2B1B14" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <svg class="bean bean--b" viewBox="0 0 24 32" aria-hidden="true">
+        <ellipse cx="12" cy="16" rx="10" ry="14" fill="#5A3825" />
+        <path d="M12 3c-3 5 3 9 0 13s3 9 0 13" fill="none" stroke="#2B1B14" stroke-width="2" stroke-linecap="round" />
+      </svg>
+
+      <div class="browser">
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">secawan</span></div>
+        <img src="shots/desktop-hero.png" alt="" />
+      </div>
+      <div class="phone"><img src="shots/mobile-hero.png" alt="" /></div>
+      <img class="bag" src="../blender/renders/bags/senja.png" alt="" />
+    </main>
+    <script>
+      const size = new URLSearchParams(location.search).get('size') || '4x3'
+      document.getElementById('canvas').classList.add('r' + size)
+    </script>
+  </body>
+</html>

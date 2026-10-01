@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+.vite/
+*.tsbuildinfo
+
+# Tests and screenshots (Playwright review output)
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+screenshots/
+.playwright-mcp/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local AI tooling (keep CLAUDE.md tracked)
+.claude/
+
+# Design scratch exports
+*.blend1
