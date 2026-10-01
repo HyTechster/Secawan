@@ -9,6 +9,7 @@ import MistClouds from './MistClouds.vue'
 import type { CupAssets } from './assets'
 import type { SceneMotion } from './types'
 import { canvasDpr } from './dpr'
+import { PASS_THROUGH } from './passThrough'
 
 defineProps<{
   assets: CupAssets
@@ -27,6 +28,7 @@ const dpr = canvasDpr()
     :alpha="true"
     :clear-alpha="0"
     :premultiplied-alpha="true"
+    :style="PASS_THROUGH"
     :antialias="true"
     :tone-mapping="ACESFilmicToneMapping"
     :tone-mapping-exposure="1.0"

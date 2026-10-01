@@ -265,6 +265,10 @@ const bars = computed(() => [
   /* Visual only; let touches scroll the page instead of being caught by the canvas */
   pointer-events: none;
 }
+.lab__bean :deep(canvas) {
+  pointer-events: none !important;
+  touch-action: pan-y !important;
+}
 .lab__bean-fallback {
   width: 50%;
   margin: 25% auto;

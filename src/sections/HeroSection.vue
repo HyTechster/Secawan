@@ -150,6 +150,9 @@ useGsapContext(section, ({ reduced: isReduced, root, later }) => {
 }
 .hero__scene :deep(canvas) {
   display: block;
+  /* Backstop for the inline TresCanvas styles; see three/passThrough.ts */
+  pointer-events: none !important;
+  touch-action: pan-y !important;
 }
 .hero__fallback,
 .hero__fallback img {

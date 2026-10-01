@@ -6,6 +6,7 @@ import RoastBeanMesh from './RoastBeanMesh.vue'
 import type { CupAssets } from './assets'
 import type { SceneMotion } from './types'
 import { canvasDpr } from './dpr'
+import { PASS_THROUGH } from './passThrough'
 
 defineProps<{
   assets: CupAssets
@@ -21,7 +22,7 @@ const dpr = canvasDpr()
 </script>
 
 <template>
-  <TresCanvas :dpr="dpr" :alpha="true" :clear-alpha="0" :antialias="true" :tone-mapping="ACESFilmicToneMapping">
+  <TresCanvas :style="PASS_THROUGH" :dpr="dpr" :alpha="true" :clear-alpha="0" :antialias="true" :tone-mapping="ACESFilmicToneMapping">
     <TresPerspectiveCamera :position="[0, 0, 4.2]" :fov="35" />
     <TresAmbientLight :intensity="0.3" />
     <TresDirectionalLight :position="[-2.5, 3, 4]" :intensity="2.6" color="#FFF1DC" />
