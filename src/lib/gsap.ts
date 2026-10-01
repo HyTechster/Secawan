@@ -10,4 +10,8 @@ gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MorphSVGPlugin, Mot
 
 gsap.defaults({ ease: 'power2.out', duration: 0.8 })
 
+// Mobile address bars resize the viewport as they slide in and out; don't recalculate
+// every trigger for that, or scroll-linked scenes (like the hero camera) jump mid-scroll.
+ScrollTrigger.config({ ignoreMobileResize: true })
+
 export { gsap, ScrollTrigger, SplitText, DrawSVGPlugin, MorphSVGPlugin, MotionPathPlugin, Flip }

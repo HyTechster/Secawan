@@ -128,7 +128,10 @@ useGsapContext(section, ({ reduced: isReduced, root, later }) => {
 <style scoped>
 .hero {
   position: relative;
-  min-height: 100dvh;
+  /* svh, not dvh: dvh grows when the mobile address bar hides, which resized the 3D canvas
+     mid-scroll and made the cup jump. svh stays fixed. */
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   overflow: hidden;

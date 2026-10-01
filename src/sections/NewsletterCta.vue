@@ -96,8 +96,10 @@ onBeforeUnmount(() => cancelAnimationFrame(raf))
 
 <template>
   <section id="newsletter" class="cta" aria-labelledby="cta-title">
-    <BlobBackdrop class="cta__blob cta__blob--a" color="var(--crema)" :opacity="0.55" />
-    <BlobBackdrop class="cta__blob cta__blob--b" color="var(--sage)" :opacity="0.35" />
+    <div class="cta__blobs" aria-hidden="true">
+      <BlobBackdrop class="cta__blob cta__blob--a" color="var(--crema)" :opacity="0.55" />
+      <BlobBackdrop class="cta__blob cta__blob--b" color="var(--sage)" :opacity="0.35" />
+    </div>
     <canvas ref="canvas" class="cta__rain" aria-hidden="true" />
 
     <div class="shell cta__inner">
@@ -155,13 +157,23 @@ onBeforeUnmount(() => cancelAnimationFrame(raf))
   width: min(70vw, 720px);
   aspect-ratio: 1;
 }
+/* The blobs morph and turn, so they can poke past the section; fade them out at its
+   top and bottom edges instead of letting overflow cut them off in a hard line */
+.cta__blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+}
 .cta__blob--a {
   left: -12%;
-  top: -18%;
+  top: -6%;
 }
 .cta__blob--b {
   right: -14%;
-  bottom: -30%;
+  bottom: -8%;
 }
 .cta__rain {
   position: absolute;
