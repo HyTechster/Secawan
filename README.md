@@ -4,7 +4,7 @@
 
 > Secawan is a fictional brand created for a design portfolio. No real shop, no real checkout.
 
-**Live demo:** _coming soon_ <!-- TODO: add the deployed URL (Vercel, Netlify or GitHub Pages) -->
+**Live demo:** https://secawan.hytechster.com/
 
 ![Secawan: a brand site for a highland coffee roastery, shown on desktop and mobile with a Blender-rendered coffee pouch. By Wan Amirul Amir @ HyTechster](design/thumbnail/secawan-thumbnail-1920x1080.jpg)
 
