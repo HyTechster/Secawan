@@ -15,7 +15,8 @@ test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
-screenshots/
+# Leading slash: only the root review folder, not docs/screenshots used by the README
+/screenshots/
 .playwright-mcp/
 
 # Environment
