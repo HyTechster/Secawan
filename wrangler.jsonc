@@ -1,0 +1,13 @@
+// Cloudflare Workers static-assets deployment for the Vite build.
+// Build first (npm run build), then deploy with: npx wrangler deploy
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "secawan-coffee",
+  "compatibility_date": "2026-10-03",
+  "assets": {
+    // Vite's output folder
+    "directory": "./dist",
+    // One-page site: unknown paths fall back to index.html instead of a 404
+    "not_found_handling": "single-page-application"
+  }
+}
