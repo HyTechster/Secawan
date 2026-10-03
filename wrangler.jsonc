@@ -4,6 +4,9 @@
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "secawan",
   "compatibility_date": "2026-10-03",
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     // Vite's output folder
     "directory": "./dist",
